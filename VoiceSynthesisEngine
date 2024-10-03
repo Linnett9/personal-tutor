@@ -1,0 +1,25 @@
+#ifndef VOICE_SYNTHESIS_ENGINE_H
+#define VOICE_SYNTHESIS_ENGINE_H
+
+#include <string>
+#include "SpeechToTextEngine.h"
+#include "LipSyncEngine.h"
+
+// VoiceSynthesisEngine: Manages the real-time synthesis of speech
+class VoiceSynthesisEngine {
+private:
+    std::string voiceModelPath;             // Path to the voice synthesis model
+    SpeechToTextEngine speechEngine;        // Converts text to speech
+    LipSyncEngine lipSyncEngine;            // Synchronizes lip movements with synthesized speech
+
+public:
+    VoiceSynthesisEngine(const std::string& modelPath);
+
+    // Synthesize speech from text input and return voice data
+    VoiceData SynthesizeVoice(const std::string& text);
+
+    // Synchronize the avatar's lip movements with the synthesized speech
+    void SyncWithAvatar(Avatar& avatar, const std::string& text);
+};
+
+#endif // VOICE_SYNTHESIS_ENGINE_H
